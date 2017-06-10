@@ -1,0 +1,1 @@
+postgres_credentials = "dbname='actor_thing' user='postgres' host='localhost' password='12345'"
