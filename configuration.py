@@ -1,1 +1,1 @@
-postgres_credentials = "dbname='actor_thing' user='postgres' host='localhost' password='12345'"
+postgres_credentials = "dbname='actorata' user='admind4j5wcq' host='localhost' password='yi_yXzgNX-U4'"
