@@ -9,8 +9,6 @@ from helpers import json_response
 app = Flask(__name__)
 # cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config.from_pyfile('flaskapp.cfg')
-configuration = {}
-configuration.postgres_credentials = app.config['POSTGRES']
 
 
 @app.route('/')
@@ -21,7 +19,7 @@ def hello_word():
 @app.route('/api/actor/<actor_id>/genre_rating')
 @json_response
 def actor_genre_rating(actor_id):
-    conn = psycopg2.connect(configuration.postgres_credentials)
+    conn = psycopg2.connect(app.config['POSTGRES'])
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cur.execute("SET search_path TO light")
     cur.execute('SELECT * from "CF_get_actor_genre_rating"(%s)' % actor_id)
@@ -32,7 +30,7 @@ def actor_genre_rating(actor_id):
 @app.route('/api/actor/<actor_id>/movies')
 @json_response
 def actor_movies(actor_id):
-    conn = psycopg2.connect(configuration.postgres_credentials)
+    conn = psycopg2.connect(app.config['POSTGRES'])
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cur.execute("SET search_path TO light")
     cur.execute('SELECT * from "CF_get_actor_movies"(%s)' % actor_id)
@@ -43,7 +41,7 @@ def actor_movies(actor_id):
 @app.route('/api/actor/<actor_id>')
 @json_response
 def actor(actor_id):
-    conn = psycopg2.connect(configuration.postgres_credentials)
+    conn = psycopg2.connect(app.config['POSTGRES'])
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cur.execute("SET search_path TO light")
     cur.execute('SELECT actor.id id, actor.gender gender, fname.name fname, lname.name lname from '
@@ -59,7 +57,7 @@ def actor(actor_id):
 @app.route('/api/actor/list')
 @json_response
 def actor_list():
-    conn = psycopg2.connect(configuration.postgres_credentials)
+    conn = psycopg2.connect(app.config['POSTGRES'])
     cur = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
     cur.execute("SET search_path TO light")
     cur.execute("SELECT actor.id, fname.name fname, lname.name lname, "
