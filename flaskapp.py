@@ -9,7 +9,8 @@ from helpers import json_response
 app = Flask(__name__)
 # cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config.from_pyfile('flaskapp.cfg')
-configuration = {'postgres_credentials': app.config['POSTGRES']}
+configuration = {}
+configuration.postgres_credentials = app.config['POSTGRES']
 
 
 @app.route('/')
