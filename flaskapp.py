@@ -1,5 +1,5 @@
 from flask import Flask
-# from flask_cors import CORS, cross_origin
+from flask_cors import CORS, cross_origin
 import psycopg2
 import psycopg2.extras
 
@@ -7,7 +7,7 @@ import psycopg2.extras
 from helpers import json_response
 
 app = Flask(__name__)
-# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config.from_pyfile('flaskapp.cfg')
 
 
