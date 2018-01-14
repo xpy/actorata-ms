@@ -1,4 +1,4 @@
-from flask impogitrt Flask
+from flask import Flask
 from flask_cors import CORS, cross_origin
 import psycopg2
 import psycopg2.extras
