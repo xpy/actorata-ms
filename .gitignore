@@ -1,4 +1,3 @@
-flaskapp.cfg
 *.pyc
 .idea/
 env/
